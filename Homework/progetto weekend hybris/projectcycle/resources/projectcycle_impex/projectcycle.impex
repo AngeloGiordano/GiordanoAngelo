@@ -1,0 +1,19 @@
+# USE CTRL-SPACE for type-ahead support
+INSERT_UPDATE Cyclist; uid[unique=true]; Name; team; years
+					   ; a1asd-5asda; Chu Wenchang; accenture; 20
+					   ; 5451a-dsae4; Angelo Giordano; soprasteria; 22
+					   ; 5a4sd-asda1; Gianpaolo Pari; IBM; 21
+INSERT_UPDATE Stage; uid[unique=true]; Name; distance
+				     ; ert3w-sdfsd; Alghero-Olbia; 206 km
+				     ;asdgf-asdgh; Pedara-Messina; 159 km
+				     ; ag31-ytrty; Firenze-Bagno di Romagna; 161 km
+
+INSERT_UPDATE StageRace;  Name; numberstage; birthDate[dateformat='dd/MM/yyyy']
+				     ; Giro di Italia'; 21 ; 5/05/2017
+				     ;Tour de France; 10; 19/10/2016
+				    
+INSERT_UPDATE StageRanking; uid[unique=true]; position;  cyclist(name); time
+					 ; 1; 1; Angelo Giordano; 3 h 25 min
+					 ; 2; 2; Gianpaolo Pari; 4 h 30 min
+					 ; 3; 3;  Chu Wenchang; 4 h 15 min
+					 
