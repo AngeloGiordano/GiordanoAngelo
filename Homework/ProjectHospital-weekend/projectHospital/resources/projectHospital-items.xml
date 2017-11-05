@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+			
+			<enumtypes>
+
+		<enumtype code="Outcome" autocreate="true" generate="true"
+			dynamic="true">
+			<value code="POSITIVE"></value>
+			<value code="NEGATIVE"></value>
+		</enumtype>
+		
+		<enumtype code="Gendertype" autocreate="true" generate="true"
+			dynamic="true">
+			<value code="M"></value>
+			<value code="F"></value>
+		</enumtype>
+	</enumtypes>
+	
+	
+	<relations>
+	<!-- Relation Department Patient 1-n -->
+	<relation code="Department2PatientRelation" generate="true" autocreate="true" localized="false">
+	<sourceElement type="Department" qualifier="department" cardinality="one"/>
+	<targetElement type="Patient" qualifier="patients" cardinality="many"/>
+	</relation>
+	
+	<!-- Relation Department Medical -->
+	<relation code="Department2MedicalRelation" generate="true" autocreate="true" localized="false">
+	<sourceElement type="Department" qualifier="department" cardinality="one"/>
+	<targetElement type="Medical" qualifier="medicals" cardinality="many"/>
+	</relation>
+	
+	<!-- Relation Visit Patient -->
+	<relation code="Visit2PatientRelation" generate="true" autocreate="true" localized="false">
+	<sourceElement type="Visit" qualifier="visit" cardinality="one"/>
+	<targetElement type="Patient" qualifier="patients" cardinality="many"/>
+	</relation>
+	</relations>
+	
+	<itemtypes>
+	
+	<!-- Type Department --> 
+	<itemtype code="Department" autocreate="true" generate="true">
+	<deployment table="Department" typecode="12011"/>
+	<attributes>
+	<attribute type="java.lang.String" qualifier="id">
+	<modifiers optional="false" unique="true" />
+	<persistence type="property"></persistence></attribute>
+	<attribute type="java.lang.String" qualifier="name">
+	<modifiers optional="false" unique="true"/>
+	<persistence type="property"></persistence>
+	</attribute>
+	
+	
+	</attributes>
+	</itemtype>
+	
+	<!-- Type Person -->
+	<itemtype code="Figure" autocreate="true" generate="true">
+	<deployment table="Person" typecode="12012"/>
+	<attributes>
+	<attribute type="java.lang.String" qualifier="id">
+	<modifiers optional="false" unique="true"/>
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.lang.String" qualifier="name">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.lang.String" qualifier="surname">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.lang.String" qualifier="CF">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.lang.String" qualifier="birthPlace">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.util.Date" qualifier="dateOfBirth">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="Gendertype" qualifier="gender">
+	<persistence type="property"/>
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	<!-- Type Visit -->
+	<itemtype code="Visit" autocreate="true" generate="true">
+	<deployment table="Visit" typecode="12015"/>
+	<attributes>
+	<attribute type="java.lang.String" qualifier="id">
+	<modifiers optional="false" unique="true"/>
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.util.Date" qualifier="dataVisit">
+	<persistence type="property"></persistence>
+	</attribute>
+	<attribute type="java.lang.String" qualifier="typeVisit">
+	<persistence type="property"></persistence>
+	</attribute>
+	<attribute type="Outcome" qualifier="outcome">
+	<persistence type="property"></persistence>
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	<!-- Type Patient -->
+	<itemtype code="Patient" extends="Figure" autocreate="true" generate="true">
+	<deployment table="Patient" typecode="12013"/>
+	<attributes>
+	<attribute type="java.util.Date" qualifier="dateOfAdmission">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.util.Date" qualifier="exitDate">
+	<persistence type="property"/>
+	</attribute>
+	<attribute type="java.lang.Integer" qualifier="day">
+	<persistence type="dynamic" attributeHandler="dayHandler" />
+	<modifiers write="false" />
+	</attribute>
+	</attributes>
+	</itemtype>
+	<!-- Type Medical -->
+	<itemtype code="Medical" extends="Figure" autocreate="true" generate="true">
+	<deployment table="Medical" typecode="12014"/>
+	<attributes>
+	<attribute type="java.lang.String" qualifier="listNumber">
+	<persistence type="property"></persistence>
+	</attribute>
+	<attribute type="Visit" qualifier="visit">
+	<persistence type="property"/>
+	</attribute>
+	</attributes>
+	
+	</itemtype>
+
+	</itemtypes>
+</items>
